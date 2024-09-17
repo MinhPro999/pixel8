@@ -14,7 +14,7 @@ void main() {
 }
 
 class MyDropdownExample extends StatefulWidget {
-  const MyDropdownExample({Key? key}) : super(key: key);
+  const MyDropdownExample({super.key});
 
   @override
   State<MyDropdownExample> createState() => _MyDropdownExampleState();

@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyRadioButtonExample extends StatefulWidget {
-  const MyRadioButtonExample({Key? key}) : super(key: key);
+  const MyRadioButtonExample({super.key});
 
   @override
   State<MyRadioButtonExample> createState() => _MyRadioButtonExampleState();

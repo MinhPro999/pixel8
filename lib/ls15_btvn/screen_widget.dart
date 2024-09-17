@@ -10,7 +10,15 @@ class MyAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'MyFont'),
+      theme: ThemeData(
+        fontFamily: 'NanumFont',
+        primaryColor: Colors.amber,
+        buttonTheme: ButtonThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
       home: const ScreenWidget(),
     );
   }
@@ -29,7 +37,7 @@ class ScreenWidget extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 68, 67, 95),
-              Color.fromARGB(255, 19, 18, 31)
+              Color.fromARGB(255, 19, 18, 31),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -43,17 +51,13 @@ class ScreenWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     LogoTopScreen(),
-                    SizedBox(
-                      height: 40,
-                    ),
+                    SizedBox(height: 40),
                     TextEmail(),
-                    SizedBox(
-                      height: 40,
-                    ),
+                    SizedBox(height: 40),
                     PassWord(),
-                    SizedBox(
-                      height: 40,
-                    ),
+                    ForgotPasswordText(),
+                    SizedBox(height: 20),
+                    LoginButton(),
                   ],
                 ),
               ),
@@ -75,6 +79,58 @@ class ScreenWidget extends StatelessWidget {
   }
 }
 
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 400,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [
+              Color.fromARGB(255, 239, 245, 86),
+              Color.fromARGB(255, 150, 247, 159)
+            ],
+          ),
+          borderRadius: BorderRadius.circular(12), // Tạo bo góc cho nút bấm
+        ),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+            backgroundColor: Colors.transparent, // Đặt màu nền trong suốt
+            shadowColor: Colors.transparent, // Loại bỏ bóng
+          ),
+          child: const Text(
+            'LOGIN',
+            style: TextStyle(
+              color: Color.fromARGB(255, 19, 18, 31),
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ForgotPasswordText extends StatelessWidget {
+  const ForgotPasswordText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {},
+      child: const Text(
+        'Forgot password?',
+        style: TextStyle(color: Colors.red),
+      ),
+    );
+  }
+}
+
 class PassWord extends StatefulWidget {
   const PassWord({super.key});
 
@@ -83,23 +139,26 @@ class PassWord extends StatefulWidget {
 }
 
 class _PassWordState extends State<PassWord> {
-  bool _isObscure = true; // Biến boolean để điều khiển hiển thị mật khẩu
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100,
       width: 400,
-      child: TextField(
+      child: TextFormField(
         obscureText: _isObscure,
         decoration: InputDecoration(
-          icon: Icon(Icons.person),
           labelText: 'Password',
+          labelStyle: const TextStyle(color: Colors.white70),
           hintText: 'Enter your password',
           hintStyle: const TextStyle(color: Colors.grey),
+          prefixIcon: const Icon(
+            Icons.lock,
+            color: Colors.white70,
+          ),
           suffixIcon: IconButton(
             onPressed: () {
-              // Thay đổi trạng thái hiển thị mật khẩu
               setState(() {
                 _isObscure = !_isObscure;
               });
@@ -119,25 +178,34 @@ class TextEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
-      decoration: InputDecoration(
-        isDense: false,
-        isCollapsed: true,
-        border: OutlineInputBorder(),
-        icon: Icon(Icons.person), // Sử dụng const để tối ưu
-        // suffixIcon: Icon(Icons.person),
-        labelText: 'Email',
-        hintText: 'Enter your email',
-        hintStyle: TextStyle(color: Colors.grey),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      width: 400,
+      child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(
+            Icons.person,
+            color: Colors.white70,
+          ),
+          labelText: 'User/Email',
+          labelStyle: TextStyle(color: Colors.white70),
+          hintText: 'Enter your email',
+          hintStyle: TextStyle(color: Colors.grey),
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Vui lòng nhập user hoặc email hợp lệ';
+          }
+          return null;
+        },
       ),
     );
   }
 }
 
 class LogoTopScreen extends StatelessWidget {
-  const LogoTopScreen({
-    super.key,
-  });
+  const LogoTopScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -156,15 +224,13 @@ class LogoTopScreen extends StatelessWidget {
           height: 200,
           width: 100,
           child: CustomPaint(
-            size: const Size(300, 300), // Tăng kích thước đám mây
-            painter: CloudPainter(), // Loại bỏ từ khóa `const`
+            size: const Size(300, 300),
+            painter: CloudPainter(),
           ),
         ),
-        const SizedBox(
-          height: 40,
-        ),
+        const SizedBox(height: 40),
         const Text(
-          'login app and continue',
+          'Login app and continue',
           style: TextStyle(
             color: Colors.white,
             fontSize: 22,
@@ -179,9 +245,8 @@ class LogoTopScreen extends StatelessWidget {
 class CloudPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const scaleFactor = 1.3; // Tăng kích thước thêm 30%
+    const scaleFactor = 1.3;
 
-    // Tạo shader cho phần dưới của đám mây
     final botCloud = Paint()
       ..shader = const LinearGradient(
         colors: [
@@ -197,7 +262,6 @@ class CloudPainter extends CustomPainter {
         ),
       );
 
-    // Vẽ phần dưới của đám mây (hình chữ nhật bo góc)
     final rect = Rect.fromLTWH(
       (size.width / 2 - 90) * scaleFactor,
       (size.height / 2.5 - 10) * scaleFactor,
@@ -210,7 +274,6 @@ class CloudPainter extends CustomPainter {
     );
     canvas.drawRRect(rrect, botCloud);
 
-    // Tạo gradient shader cho đám mây
     final bodyCloud = Paint()
       ..shader = const LinearGradient(
         colors: [
@@ -227,13 +290,11 @@ class CloudPainter extends CustomPainter {
         ),
       );
 
-    // Vẽ các phần hình tròn của đám mây
     final cloudCenter = Offset(
       (size.width / 2 - 15) * scaleFactor,
       (size.height / 2 - 20) * scaleFactor,
     );
-    canvas.drawCircle(
-        cloudCenter, 54 * scaleFactor, bodyCloud); // Đám mây ở giữa
+    canvas.drawCircle(cloudCenter, 54 * scaleFactor, bodyCloud);
   }
 
   @override

@@ -57,6 +57,9 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  assets:
+    - images/
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -117,3 +120,15 @@ fonts:
         - asset: font/SVN-CenturyGothic-Thin.ttf
           style: Thin
           weight: 100
+    - family: NanumFont
+      fonts:
+        - asset: font/NanumGothic-ExtraBold.ttf
+          style: ExtraBold
+          weight: 700
+        - asset: font/NanumGothic-Bold.ttf
+          style: Bold
+          weight: 500
+        - asset: font/NanumGothic-Regular.ttf
+          style: Bold
+          weight: 300
+        
