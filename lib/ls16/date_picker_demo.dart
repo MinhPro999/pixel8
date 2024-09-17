@@ -14,14 +14,14 @@ void main() {
 }
 
 class MyDatePickerExample extends StatefulWidget {
-  const MyDatePickerExample({Key? key}) : super(key: key);
+  const MyDatePickerExample({super.key});
 
   @override
   State<MyDatePickerExample> createState() => _MyDatePickerExampleState();
 }
 
 class _MyDatePickerExampleState extends State<MyDatePickerExample> {
-  DateTime _selectedDate = DateTime.now();
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,9 @@ class _MyDatePickerExampleState extends State<MyDatePickerExample> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Selected Date: ${_selectedDate.toLocal()}',
+              (_selectedDate == null)
+                  ? 'chọn ngày'
+                  : 'Selected Date: ${_selectedDate!.toLocal()}',
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),

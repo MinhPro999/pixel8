@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyCheckboxExample extends StatefulWidget {
-  const MyCheckboxExample({Key? key}) : super(key: key);
+  const MyCheckboxExample({super.key});
 
   @override
   State<MyCheckboxExample> createState() => _MyCheckboxExampleState();
