@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -17,7 +16,7 @@ class ScreenLisstviewWeatherApp extends StatelessWidget {
           backgroundColor:
               const Color.fromARGB(255, 10, 14, 23).withOpacity(0.6),
           title: const Text(
-            'List weather City',
+            'Weather list of Cities',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -53,81 +52,106 @@ class BodyScreenListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Danh sách các dữ liệu thời tiết
+    final weatherData = [
+      {
+        'city': 'Hạ Long',
+        'time': '09:41',
+        'weatherType': 'Sunny somethime have rainy',
+        'temp': 28.5,
+        'backgroundImage': 'images/images_weather/select2.jpg',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      },
+      {
+        'city': 'Hà Nội',
+        'time': '09:41',
+        'weatherType': 'Sunsine',
+        'temp': 29,
+        'backgroundImage': 'images/images_weather/select1.jpg',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      },
+      {
+        'city': 'Bắc Kinh',
+        'time': '10:41',
+        'weatherType': 'Stormy and wind',
+        'temp': 18,
+        'backgroundImage': 'images/images_weather/select3.jpg',
+        'iconWeather': 'icon/svg/weatherIcon260.svg'
+      },
+      {
+        'city': 'Thượng Hải',
+        'time': '10:41',
+        'weatherType': 'Windy and cloud',
+        'temp': 19.3,
+        'backgroundImage': 'images/images_weather/select3.jpg',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      },
+      {
+        'city': 'Paris',
+        'time': '02:41',
+        'weatherType': 'Cloud night',
+        'temp': 16.2,
+        'backgroundImage': 'images/images_weather/night.png',
+        'iconWeather': 'icon/svg/weatherIcon260.svg'
+      },
+      {
+        'city': 'Habana',
+        'time': '21:41',
+        'weatherType': 'Rainy',
+        'temp': 18.5,
+        'backgroundImage': 'images/images_weather/bg.jpg',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      },
+      {
+        'city': 'Tokyo',
+        'time': '11:41',
+        'weatherType': 'Sunny',
+        'temp': 16.2,
+        'backgroundImage': 'images/images_weather/night.png',
+        'iconWeather': 'icon/svg/weatherIcon260.svg'
+      },
+      {
+        'city': 'New York',
+        'time': '21:41',
+        'weatherType': 'Cloud night',
+        'temp': 16.2,
+        'backgroundImage': 'images/images_weather/bg.jpg',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      },
+      {
+        'city': 'Mandiver',
+        'time': '03:41',
+        'weatherType': 'Windy',
+        'temp': 16.2,
+        'backgroundImage': 'images/images_weather/night.png',
+        'iconWeather': 'icon/svg/weatherIcon245.svg'
+      }
+    ];
+
     return Container(
       height: double.infinity,
       width: double.infinity,
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/images_weather/bgg.jpg'),
-              fit: BoxFit.cover)),
-      child: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            RowItem(
-                city: 'Hạ Long',
-                time: '09:41',
-                weatherType: 'Sunny somethime have rainy',
-                temp: 28.5,
-                backgroundImage: 'images/images_weather/select2.jpg',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-            RowItem(
-                city: 'Hà Nội',
-                time: '09:41',
-                weatherType: 'Sunsine',
-                temp: 29,
-                backgroundImage: 'images/images_weather/select1.jpg',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-            RowItem(
-                city: 'Bắc Kinh',
-                time: '10:41',
-                weatherType: 'Stormy and wind',
-                temp: 18,
-                backgroundImage: 'images/images_weather/select3.jpg',
-                iconWeather: 'icon/svg/weatherIcon260.svg'),
-            RowItem(
-                city: 'Thượng Hải',
-                time: '10:41',
-                weatherType: 'Windy and cloud',
-                temp: 19.3,
-                backgroundImage: 'images/images_weather/select3.jpg',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-            RowItem(
-                city: 'Paris',
-                time: '02:41',
-                weatherType: 'Cloud night',
-                temp: 16.2,
-                backgroundImage: 'images/images_weather/night.png',
-                iconWeather: 'icon/svg/weatherIcon260.svg'),
-            RowItem(
-                city: 'Habana',
-                time: '21:41',
-                weatherType: 'Rainy',
-                temp: 18.5,
-                backgroundImage: 'images/images_weather/bg.jpg',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-            RowItem(
-                city: 'Tokyo',
-                time: '11:41',
-                weatherType: 'Sunny',
-                temp: 16.2,
-                backgroundImage: 'images/images_weather/night.png',
-                iconWeather: 'icon/svg/weatherIcon260.svg'),
-            RowItem(
-                city: 'New York',
-                time: '21:41',
-                weatherType: 'Cloud night',
-                temp: 16.2,
-                backgroundImage: 'images/images_weather/bg.jpg',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-            RowItem(
-                city: 'Mandiver',
-                time: '03:41',
-                weatherType: 'Windy',
-                temp: 16.2,
-                backgroundImage: 'images/images_weather/night.png',
-                iconWeather: 'icon/svg/weatherIcon245.svg'),
-          ],
+        image: DecorationImage(
+          image: AssetImage('images/images_weather/bgg.jpg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ListView.builder(
+          itemCount: weatherData.length,
+          itemBuilder: (context, index) {
+            final item = weatherData[index];
+            return RowItem(
+              city: item['city'] as String,
+              time: item['time'] as String,
+              weatherType: item['weatherType'] as String,
+              temp: item['temp'] as double,
+              backgroundImage: item['backgroundImage'] as String,
+              iconWeather: item['iconWeather'] as String,
+            );
+          },
         ),
       ),
     );
@@ -221,11 +245,21 @@ class InfoRowItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(city,
-            style: const TextStyle(
-                color: Colors.white,
-                fontSize: 36,
-                fontWeight: FontWeight.w600)),
+        Text(
+          city,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 36,
+            fontWeight: FontWeight.w600,
+            shadows: [
+              Shadow(
+                offset: Offset(2.0, 2.0), // Vị trí bóng đổ (x, y)
+                blurRadius: 3.0, // Mức độ mờ của bóng
+                color: Color.fromARGB(255, 0, 0, 0), // Màu của bóng (đen)
+              ),
+            ],
+          ),
+        ),
         const SizedBox(
           height: 8,
         ),
