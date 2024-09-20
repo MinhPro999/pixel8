@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main(List<String> args) {
   runApp(const MaterialApp(
@@ -24,6 +25,7 @@ class _TabbarCinamaState extends State<TabbarCinama> {
           leading: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.arrow_back_ios),
+            color: Colors.white,
           ),
           centerTitle: true,
           title: const Text(
@@ -43,27 +45,34 @@ class _TabbarCinamaState extends State<TabbarCinama> {
             ],
           ),
         ),
-        body: const SafeArea(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 76,
-                    width: 125,
-                  ),
-                  SizedBox(
-                    height: 76,
-                    width: 125,
-                  ),
-                  SizedBox(
-                    height: 76,
-                    width: 125,
-                  ),
-                ],
-              ),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: null,
+                      child: SvgPicture.asset(
+                        'icon/svg/Calendar.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: null,
+                      child: SvgPicture.asset(
+                        'icon/svg/Sort.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
