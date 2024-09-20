@@ -221,7 +221,17 @@ class IconRowItem extends StatelessWidget {
         Text(
           '$temp°C',
           style: const TextStyle(
-              fontSize: 48, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 48,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                offset: Offset(2.0, 3.5),
+                blurRadius: 3.0,
+                color: Color.fromARGB(255, 57, 57, 57),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -253,9 +263,9 @@ class InfoRowItem extends StatelessWidget {
             fontWeight: FontWeight.w600,
             shadows: [
               Shadow(
-                offset: Offset(2.0, 2.0), // Vị trí bóng đổ (x, y)
-                blurRadius: 3.0, // Mức độ mờ của bóng
-                color: Color.fromARGB(255, 0, 0, 0), // Màu của bóng (đen)
+                offset: Offset(2.0, 3.5),
+                blurRadius: 3.0,
+                color: Color.fromARGB(255, 57, 57, 57),
               ),
             ],
           ),
@@ -265,17 +275,33 @@ class InfoRowItem extends StatelessWidget {
         ),
         Text(time,
             style: const TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.w100)),
+              color: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.w100,
+              shadows: [
+                Shadow(
+                  offset: Offset(2.0, 3.5),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 57, 57, 57),
+                ),
+              ],
+            )),
         const SizedBox(
           height: 8,
         ),
         Text(weatherType,
             style: const TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.w600)),
+              color: Colors.white,
+              fontSize: 28,
+              fontWeight: FontWeight.w600,
+              shadows: [
+                Shadow(
+                  offset: Offset(2.0, 3.5),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 57, 57, 57),
+                ),
+              ],
+            )),
       ],
     );
   }
